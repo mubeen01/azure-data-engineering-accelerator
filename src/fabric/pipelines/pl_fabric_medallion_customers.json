@@ -1,0 +1,72 @@
+{
+    "name": "pl_fabric_medallion_customers",
+    "properties": {
+        "description": "Fabric Data Factory pipeline: chains the three Lakehouse notebooks (src/fabric/lakehouse/notebooks/) for one entity, Bronze -> Silver -> Gold. This is the inner-content only (the 'pipeline-content.json' body) — Fabric's Git-sync wraps each item in a '<Name>.DataPipeline/' folder plus a '.platform' metadata file, not reproduced here since it wasn't verified against a live workspace. Not a metadata-driven orchestrator like src/adf/pipeline/pl_master_orchestrator.json — that's a natural next step (a Fabric Warehouse control table + Lookup activity), not built here given the same object-per-entity scope as this repo's single-entity ADF example pipelines.",
+        "activities": [
+            {
+                "name": "Bronze_Ingest_Customers",
+                "type": "TridentNotebook",
+                "typeProperties": {
+                    "notebookId": "<bronze-ingest-notebook-guid>",
+                    "workspaceId": "<workspace-guid>",
+                    "parameters": {
+                        "source_path": { "value": "Files/raw/banking/customers.csv", "type": "string" },
+                        "source_format": { "value": "csv", "type": "string" },
+                        "bronze_table_name": { "value": "lh_bronze.banking_customers", "type": "string" }
+                    }
+                },
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 2,
+                    "retryIntervalInSeconds": 30
+                }
+            },
+            {
+                "name": "Silver_Conform_Customers",
+                "type": "TridentNotebook",
+                "dependsOn": [
+                    { "activity": "Bronze_Ingest_Customers", "dependencyConditions": ["Succeeded"] }
+                ],
+                "typeProperties": {
+                    "notebookId": "<silver-conform-notebook-guid>",
+                    "workspaceId": "<workspace-guid>",
+                    "parameters": {
+                        "bronze_table_name": { "value": "lh_bronze.banking_customers", "type": "string" },
+                        "silver_table_name": { "value": "lh_silver.banking_customers", "type": "string" },
+                        "natural_key_columns": { "value": "customer_id", "type": "string" }
+                    }
+                },
+                "policy": {
+                    "timeout": "0.06:00:00",
+                    "retry": 1,
+                    "retryIntervalInSeconds": 30
+                }
+            },
+            {
+                "name": "Gold_Load_Dim_Customer",
+                "type": "TridentNotebook",
+                "dependsOn": [
+                    { "activity": "Silver_Conform_Customers", "dependencyConditions": ["Succeeded"] }
+                ],
+                "typeProperties": {
+                    "notebookId": "<gold-scd2-notebook-guid>",
+                    "workspaceId": "<workspace-guid>",
+                    "parameters": {
+                        "silver_table_name": { "value": "lh_silver.banking_customers", "type": "string" },
+                        "gold_table_name": { "value": "lh_gold.dim_customer", "type": "string" },
+                        "natural_key_columns": { "value": "customer_id", "type": "string" },
+                        "tracked_columns_csv": {
+                            "value": "first_name,last_name,email,phone,customer_segment",
+                            "type": "string"
+                        }
+                    }
+                },
+                "policy": {
+                    "timeout": "0.06:00:00",
+                    "retry": 1,
+                    "retryIntervalInSeconds": 30
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,163 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  # Ephemeral, throwaway password for the transient SQL Server service
+  # container below — the container is destroyed at the end of the job,
+  # never exposed outside it, and never used for anything real. Not a
+  # secret; deliberately hardcoded rather than requiring every fork to
+  # configure a repo secret before CI works at all.
+  CI_SQL_PASSWORD: "CI_Test_Only_P@ssw0rd_2026!"
+
+jobs:
+  validate-bicep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Bicep CLI
+        run: az bicep install
+
+      - name: Build every main.bicep (fails on any error/warning-as-error)
+        run: |
+          set -e
+          for f in src/infrastructure/bicep/main.bicep \
+                   src/monitoring/bicep/main.bicep \
+                   src/security/bicep/main.bicep; do
+            echo "== $f =="
+            az bicep build --file "$f" --stdout > /dev/null
+          done
+
+  validate-terraform:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dir:
+          - src/infrastructure/terraform
+          - src/monitoring/terraform
+          - src/security/terraform
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+
+      - name: terraform fmt -check
+        working-directory: ${{ matrix.dir }}
+        run: terraform fmt -check -recursive
+
+      - name: terraform init (no backend)
+        working-directory: ${{ matrix.dir }}
+        run: terraform init -backend=false -input=false
+
+      - name: terraform validate
+        working-directory: ${{ matrix.dir }}
+        run: terraform validate
+
+  validate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate every pipeline/dataset/linkedService JSON file parses
+        run: |
+          set -e
+          for f in $(find src/adf src/fabric src/synapse -name "*.json" 2>/dev/null); do
+            echo "== $f =="
+            python3 -m json.tool "$f" > /dev/null
+          done
+
+  validate-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Syntax-check every notebook (Databricks/Fabric/Synapse) and generator source
+        run: |
+          set -e
+          for f in $(find src/databricks src/fabric/lakehouse src/synapse/spark tools/synthetic-data-generator examples/banking/databricks examples/healthcare/databricks examples/retail/databricks -name "*.py" 2>/dev/null); do
+            echo "== $f =="
+            python3 -m py_compile "$f"
+          done
+
+      - name: Install generator dependencies
+        run: pip install -r tools/synthetic-data-generator/requirements.txt
+
+      - name: Smoke-test the synthetic data generator (every implemented domain)
+        run: |
+          set -e
+          cd tools/synthetic-data-generator
+
+          python -m generator.cli --domain banking --rows 50 --seed 1 --output-dir /tmp/adea-ci-output/banking
+          test -s /tmp/adea-ci-output/banking/customers.csv
+          test -s /tmp/adea-ci-output/banking/accounts.csv
+          test -s /tmp/adea-ci-output/banking/transactions.csv
+          test -s /tmp/adea-ci-output/banking/loans.csv
+
+          python -m generator.cli --domain healthcare --rows 50 --seed 1 --output-dir /tmp/adea-ci-output/healthcare
+          test -s /tmp/adea-ci-output/healthcare/patients.csv
+          test -s /tmp/adea-ci-output/healthcare/providers.csv
+          test -s /tmp/adea-ci-output/healthcare/claims.csv
+          test -s /tmp/adea-ci-output/healthcare/pharmacy.csv
+
+          python -m generator.cli --domain retail --rows 50 --seed 1 --output-dir /tmp/adea-ci-output/retail
+          test -s /tmp/adea-ci-output/retail/customers.csv
+          test -s /tmp/adea-ci-output/retail/products.csv
+          test -s /tmp/adea-ci-output/retail/inventory.csv
+          test -s /tmp/adea-ci-output/retail/orders.csv
+
+  validate-sql:
+    runs-on: ubuntu-latest
+    services:
+      mssql:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: "Y"
+          MSSQL_SA_PASSWORD: ${{ env.CI_SQL_PASSWORD }}
+        ports:
+          - 1433:1433
+        options: >-
+          --health-cmd "exit 0"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install sqlcmd
+        run: |
+          curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
+          curl https://packages.microsoft.com/config/ubuntu/22.04/prod.list | sudo tee /etc/apt/sources.list.d/mssql-release.list
+          sudo apt-get update
+          sudo ACCEPT_EULA=Y apt-get install -y mssql-tools18 unixodbc-dev
+          echo "/opt/mssql-tools18/bin" >> "$GITHUB_PATH"
+
+      - name: Wait for SQL Server to accept connections
+        run: |
+          for i in $(seq 1 30); do
+            sqlcmd -S localhost -U sa -P "${{ env.CI_SQL_PASSWORD }}" -C -Q "SELECT 1" && break
+            sleep 2
+          done
+
+      - name: Run every script in src/sql/ and every examples/*/sql/, in order
+        run: |
+          set -e
+          for f in $(find src/sql -name "*.sql" | sort) \
+                   $(find examples/banking/sql -name "*.sql" | sort) \
+                   $(find examples/healthcare/sql -name "*.sql" | sort) \
+                   $(find examples/retail/sql -name "*.sql" | sort); do
+            echo "== $f =="
+            sqlcmd -S localhost -U sa -P "${{ env.CI_SQL_PASSWORD }}" -C -i "$f"
+          done

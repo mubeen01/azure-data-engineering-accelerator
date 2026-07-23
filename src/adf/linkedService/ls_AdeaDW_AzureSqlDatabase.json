@@ -1,0 +1,23 @@
+{
+    "name": "ls_AdeaDW_AzureSqlDatabase",
+    "properties": {
+        "description": "Auth: SQL authentication with the password stored as an Azure Key Vault secret — never inline. Replace <server-name>/<sql-user>/<secret-name> at deployment time.",
+        "annotations": [],
+        "type": "AzureSqlDatabase",
+        "typeProperties": {
+            "connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=<server-name>.database.windows.net;Initial Catalog=AdeaDW;User ID=<sql-user>",
+            "password": {
+                "type": "AzureKeyVaultSecret",
+                "store": {
+                    "referenceName": "ls_AdeaKeyVault",
+                    "type": "LinkedServiceReference"
+                },
+                "secretName": "<secret-name>"
+            }
+        },
+        "connectVia": {
+            "referenceName": "AutoResolveIntegrationRuntime",
+            "type": "IntegrationRuntimeReference"
+        }
+    }
+}

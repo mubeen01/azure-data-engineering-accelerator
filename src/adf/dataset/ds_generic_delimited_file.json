@@ -1,0 +1,30 @@
+{
+    "name": "ds_generic_delimited_file",
+    "properties": {
+        "description": "Parameterized so one dataset serves every file-based source object, driven by etl.ctrl_pipeline_metadata.",
+        "linkedServiceName": {
+            "referenceName": "ls_AdeaDataLake_Storage",
+            "type": "LinkedServiceReference"
+        },
+        "parameters": {
+            "container": { "type": "string" },
+            "folderPath": { "type": "string" },
+            "fileName": { "type": "string" }
+        },
+        "annotations": [],
+        "type": "DelimitedText",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "fileSystem": "@dataset().container",
+                "folderPath": "@dataset().folderPath",
+                "fileName": "@dataset().fileName"
+            },
+            "columnDelimiter": ",",
+            "escapeChar": "\\",
+            "firstRowAsHeader": true,
+            "quoteChar": "\""
+        },
+        "schema": []
+    }
+}

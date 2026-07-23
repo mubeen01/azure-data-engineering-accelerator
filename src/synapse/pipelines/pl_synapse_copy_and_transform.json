@@ -1,0 +1,80 @@
+{
+    "name": "pl_synapse_copy_and_transform",
+    "properties": {
+        "description": "Synapse Pipelines share ADF's JSON schema almost exactly (same underlying engine) — src/adf/pipeline/pl_load_generic_full.json's Copy activity ports here essentially unchanged. The one genuinely Synapse-specific piece is the 'SynapseNotebook' activity type, used to invoke a Synapse Spark pool notebook (src/synapse/spark/) in place of ADF's 'DatabricksNotebook' activity type. Not verified against a live Synapse workspace.",
+        "activities": [
+            {
+                "name": "Copy_Source_To_Staging",
+                "type": "Copy",
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 2,
+                    "retryIntervalInSeconds": 30
+                },
+                "typeProperties": {
+                    "source": {
+                        "type": "DelimitedTextSource",
+                        "storeSettings": {
+                            "type": "AzureBlobFSReadSettings",
+                            "recursive": false
+                        },
+                        "formatSettings": {
+                            "type": "DelimitedTextReadSettings"
+                        }
+                    },
+                    "sink": {
+                        "type": "AzureSqlSink",
+                        "writeBehavior": "insert"
+                    }
+                },
+                "inputs": [
+                    {
+                        "referenceName": "ds_generic_delimited_file",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "container": "raw",
+                            "folderPath": "banking",
+                            "fileName": "customers.csv"
+                        }
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "ds_generic_sql_table",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "schemaName": "staging",
+                            "tableName": "stg_banking_customer"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "Gold_Load_Dim_Customer_Spark",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    { "activity": "Copy_Source_To_Staging", "dependencyConditions": ["Succeeded"] }
+                ],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "01_Gold_Load_Dim_Scd2",
+                        "type": "NotebookReference"
+                    },
+                    "sparkPool": {
+                        "referenceName": "<synapse-spark-pool-name>",
+                        "type": "BigDataPoolReference"
+                    },
+                    "parameters": {
+                        "silver_table_name": { "value": "silver.banking_customers", "type": "string" },
+                        "gold_table_name": { "value": "gold.dim_customer", "type": "string" }
+                    }
+                },
+                "policy": {
+                    "timeout": "0.06:00:00",
+                    "retry": 1,
+                    "retryIntervalInSeconds": 30
+                }
+            }
+        ]
+    }
+}

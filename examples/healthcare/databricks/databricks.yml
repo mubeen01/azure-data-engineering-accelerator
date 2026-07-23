@@ -1,0 +1,152 @@
+bundle:
+  name: adea-healthcare
+
+variables:
+  catalog:
+    description: "Unity Catalog name — matches src/databricks/00_common/utils.py's CATALOG constant."
+    default: adea
+  checkpoint_root:
+    description: "ADLS path root for Auto Loader checkpoints."
+    default: /mnt/adea/_checkpoints
+
+resources:
+  jobs:
+    healthcare_medallion_pipeline:
+      name: "ADEA Healthcare - Medallion Pipeline"
+      tasks:
+        # --- Bronze: one Auto Loader run per entity ---
+        - task_key: bronze_patients
+          notebook_task:
+            notebook_path: ../../../src/databricks/01_bronze/01_Bronze_Autoloader_Ingest.py
+            base_parameters:
+              source_path: /mnt/adea/raw/healthcare/patients
+              source_format: csv
+              bronze_table: ${var.catalog}.bronze.healthcare_patients
+              checkpoint_path: ${var.checkpoint_root}/bronze/healthcare_patients
+
+        - task_key: bronze_providers
+          notebook_task:
+            notebook_path: ../../../src/databricks/01_bronze/01_Bronze_Autoloader_Ingest.py
+            base_parameters:
+              source_path: /mnt/adea/raw/healthcare/providers
+              source_format: csv
+              bronze_table: ${var.catalog}.bronze.healthcare_providers
+              checkpoint_path: ${var.checkpoint_root}/bronze/healthcare_providers
+
+        - task_key: bronze_claims
+          notebook_task:
+            notebook_path: ../../../src/databricks/01_bronze/01_Bronze_Autoloader_Ingest.py
+            base_parameters:
+              source_path: /mnt/adea/raw/healthcare/claims
+              source_format: csv
+              bronze_table: ${var.catalog}.bronze.healthcare_claims
+              checkpoint_path: ${var.checkpoint_root}/bronze/healthcare_claims
+
+        - task_key: bronze_pharmacy
+          notebook_task:
+            notebook_path: ../../../src/databricks/01_bronze/01_Bronze_Autoloader_Ingest.py
+            base_parameters:
+              source_path: /mnt/adea/raw/healthcare/pharmacy
+              source_format: csv
+              bronze_table: ${var.catalog}.bronze.healthcare_pharmacy
+              checkpoint_path: ${var.checkpoint_root}/bronze/healthcare_pharmacy
+
+        # --- Silver: generic cleanse/conform per entity ---
+        - task_key: silver_patients
+          depends_on:
+            - task_key: bronze_patients
+          notebook_task:
+            notebook_path: ../../../src/databricks/02_silver/01_Silver_Conform_Generic.py
+            base_parameters:
+              bronze_table: ${var.catalog}.bronze.healthcare_patients
+              silver_table: ${var.catalog}.silver.healthcare_patients
+              natural_key_columns: patient_id
+
+        - task_key: silver_providers
+          depends_on:
+            - task_key: bronze_providers
+          notebook_task:
+            notebook_path: ../../../src/databricks/02_silver/01_Silver_Conform_Generic.py
+            base_parameters:
+              bronze_table: ${var.catalog}.bronze.healthcare_providers
+              silver_table: ${var.catalog}.silver.healthcare_providers
+              natural_key_columns: provider_id
+
+        - task_key: silver_claims
+          depends_on:
+            - task_key: bronze_claims
+          notebook_task:
+            notebook_path: ../../../src/databricks/02_silver/01_Silver_Conform_Generic.py
+            base_parameters:
+              bronze_table: ${var.catalog}.bronze.healthcare_claims
+              silver_table: ${var.catalog}.silver.healthcare_claims
+              natural_key_columns: claim_id
+
+        - task_key: silver_pharmacy
+          depends_on:
+            - task_key: bronze_pharmacy
+          notebook_task:
+            notebook_path: ../../../src/databricks/02_silver/01_Silver_Conform_Generic.py
+            base_parameters:
+              bronze_table: ${var.catalog}.bronze.healthcare_pharmacy
+              silver_table: ${var.catalog}.silver.healthcare_pharmacy
+              natural_key_columns: prescription_id
+
+        # --- Gold: dimensions (generic SCD Type 2 notebook) ---
+        # Address fields stay plain passthrough attributes, not resolved to
+        # a location_key — same deliberate simplification banking's
+        # gold_dim_customer task makes (see examples/banking/README.md's
+        # Databricks section). gender/date_of_birth/blood_type and
+        # first_name/last_name/npi_number are treated as immutable, so
+        # they're excluded from tracked_columns, mirroring
+        # ../sql/05_Load_Dim_Patient_Healthcare.sql and
+        # ../sql/06_Load_Dim_Provider_Healthcare.sql's comparison lists.
+        - task_key: gold_dim_patient
+          depends_on:
+            - task_key: silver_patients
+          notebook_task:
+            notebook_path: ../../../src/databricks/03_gold/02_Gold_Load_Dim_Scd2.py
+            base_parameters:
+              silver_table: ${var.catalog}.silver.healthcare_patients
+              gold_table: ${var.catalog}.gold.dim_patient
+              natural_key_columns: patient_id
+              tracked_columns: first_name,last_name,email,phone,insurance_plan
+
+        - task_key: gold_dim_provider
+          depends_on:
+            - task_key: silver_providers
+          notebook_task:
+            notebook_path: ../../../src/databricks/03_gold/02_Gold_Load_Dim_Scd2.py
+            base_parameters:
+              silver_table: ${var.catalog}.silver.healthcare_providers
+              gold_table: ${var.catalog}.gold.dim_provider
+              natural_key_columns: provider_id
+              tracked_columns: specialty,facility_name,city,region,phone
+
+        # --- Gold: facts (healthcare-specific — resolve patient + provider) ---
+        - task_key: gold_fact_claims
+          depends_on:
+            - task_key: silver_claims
+            - task_key: gold_dim_patient
+            - task_key: gold_dim_provider
+          notebook_task:
+            notebook_path: ./gold_load_fact_claims_healthcare.py
+            base_parameters:
+              silver_table: ${var.catalog}.silver.healthcare_claims
+              gold_table: ${var.catalog}.gold.fact_claims
+
+        - task_key: gold_fact_pharmacy
+          depends_on:
+            - task_key: silver_pharmacy
+            - task_key: gold_dim_patient
+            - task_key: gold_dim_provider
+          notebook_task:
+            notebook_path: ./gold_load_fact_pharmacy_healthcare.py
+            base_parameters:
+              silver_table: ${var.catalog}.silver.healthcare_pharmacy
+              gold_table: ${var.catalog}.gold.fact_pharmacy
+
+targets:
+  dev:
+    mode: development
+    default: true

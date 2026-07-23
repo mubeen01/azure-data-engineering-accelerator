@@ -1,0 +1,15 @@
+{
+    "name": "ls_AdeaDataLake_Storage",
+    "properties": {
+        "description": "Auth: system-assigned Managed Identity — grant this Data Factory's identity the 'Storage Blob Data Contributor' role on the storage account. No secrets stored here.",
+        "annotations": [],
+        "type": "AzureBlobFS",
+        "typeProperties": {
+            "url": "https://<storage-account-name>.dfs.core.windows.net"
+        },
+        "connectVia": {
+            "referenceName": "AutoResolveIntegrationRuntime",
+            "type": "IntegrationRuntimeReference"
+        }
+    }
+}

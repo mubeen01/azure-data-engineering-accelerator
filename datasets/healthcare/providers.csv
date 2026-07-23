@@ -1,0 +1,101 @@
+provider_id,first_name,last_name,specialty,npi_number,facility_name,city,region,phone,created_date
+PROV400000,Hannah,Pineda,Internal Medicine,7784452486,Kennethbury Medical Center,Debraland,Hawaii,001-704-758-9638,2019-09-24
+PROV400001,Kelly,Trevino,Dermatology,5341281639,Melissaton Hospital,Marialand,West Virginia,7664605880,2024-01-05
+PROV400002,Jose,Riley,Neurology,9186444252,West Virginiahaven Health Group,East Eric,Mississippi,402.311.6866x0289,2020-09-29
+PROV400003,Christina,Obrien,Psychiatry,6560341732,Pamelashire Clinic,Port Jenniferside,Delaware,001-854-683-6115x38336,2020-12-24
+PROV400004,Brittany,Campbell,Family Medicine,2118594780,Jeremybury Hospital,Dawnchester,New Jersey,+1-845-366-1155,2022-01-13
+PROV400005,Samantha,Carlson,Endocrinology,9811640292,Parkerton Health Group,Samuelfort,Nevada,(601)278-2961x47307,2019-10-30
+PROV400006,Stephen,Jimenez,Endocrinology,5412211686,South James Hospital,Port Brianachester,South Carolina,001-846-752-1745,2023-04-15
+PROV400007,Brandi,Schwartz,Internal Medicine,8661202977,Jamesside Health Group,Hartport,Iowa,001-780-968-4145x795,2020-03-26
+PROV400008,Angela,Jones,Cardiology,7939798543,Loveshire Health Group,Dayhaven,Colorado,(361)830-2327x639,2024-08-09
+PROV400009,Crystal,Harvey,Pediatrics,9650936041,Harrisshire Medical Center,Longmouth,Utah,001-565-696-4718x175,2018-11-21
+PROV400010,Bianca,Rodriguez,Endocrinology,7213328054,Bartonstad Clinic,North Lindamouth,Nebraska,344.806.0210,2025-06-23
+PROV400011,Kristin,White,Pediatrics,6309420888,Oliverchester Clinic,Martinmouth,North Carolina,001-433-622-6373x196,2020-03-15
+PROV400012,Robert,Porter,Neurology,4702323796,Port Davidton Health Group,South Thomasmouth,Hawaii,(571)656-9147x01298,2024-05-22
+PROV400013,Michael,Miller,Internal Medicine,5154717862,Hilltown Clinic,Jenningsstad,Arizona,2666528530,2021-05-06
+PROV400014,Nicholas,Neal,OB/GYN,2645689727,Fergusonmouth Hospital,East Edward,Florida,001-200-365-9774x1442,2022-11-16
+PROV400015,Dominique,Smith,Cardiology,2482088956,Sierratown Health Group,Keyside,New Jersey,(217)304-6687,2025-05-10
+PROV400016,Tracy,Hughes,Internal Medicine,1225585432,North Stephaniefort Hospital,East Joeview,Missouri,001-858-736-5998x016,2023-03-14
+PROV400017,Lisa,Garcia,Psychiatry,7340367905,South Lauren Hospital,East Kathleen,Georgia,7862102130,2023-05-31
+PROV400018,Sara,Greer,Neurology,6298534979,Toddborough Hospital,Alyssaland,Vermont,560-682-4740x794,2021-03-17
+PROV400019,Justin,Rodriguez,OB/GYN,2127966460,Carsonfurt Hospital,Abbottland,Rhode Island,(921)832-3929x5019,2019-04-04
+PROV400020,Bill,Lee,Family Medicine,8719383556,South Matthewhaven Hospital,New Stephenfurt,Texas,605.711.9388x3090,2023-11-21
+PROV400021,William,Foster,Dermatology,1176169319,Monroeland Health Group,North Joseph,Wyoming,5183590527,2019-03-22
+PROV400022,Kathy,Gonzales,Psychiatry,6465734977,Bellchester Health Group,Livingstonburgh,Louisiana,328-265-0384,2019-05-17
+PROV400023,Sheila,Bradley,Pediatrics,4445922559,East Howard Health Group,Lake Nancy,Kentucky,906-861-5922x209,2024-07-08
+PROV400024,Emma,Fuentes,Endocrinology,6974959934,Jonesborough Clinic,West Linda,Michigan,001-891-243-2117x245,2025-03-11
+PROV400025,Maurice,Hunt,Endocrinology,4309260670,New Danielleside Health Group,Wilsonmouth,North Carolina,9875135384,2019-10-30
+PROV400026,Toni,Moore,Cardiology,9635366717,Lake Victoriamouth Medical Center,Lake Jeffreystad,Oregon,001-659-825-7072x79290,2024-11-25
+PROV400027,Barbara,Mcgee,Internal Medicine,5346341182,Port Chadmouth Medical Center,North Debra,Iowa,402.461.6716x7270,2024-10-08
+PROV400028,Kelly,Johnson,Neurology,7210274473,South Fernando Clinic,New Jamieside,Indiana,(609)314-3193,2025-03-17
+PROV400029,Mark,Kirby,Pediatrics,2081885552,Lake Caseyhaven Medical Center,East Brian,Iowa,439-972-9887,2022-06-25
+PROV400030,Charles,Rocha,Family Medicine,3660290823,West Donaldbury Medical Center,Lamberthaven,Alaska,001-990-707-7964x2770,2019-10-29
+PROV400031,Nathan,Wilkinson,Endocrinology,4588269668,East Rosemouth Medical Center,Stacybury,Delaware,001-574-548-5195x442,2020-10-08
+PROV400032,Jonathan,Thompson,Internal Medicine,3597105677,Lauraland Hospital,New Aliciaberg,South Dakota,571-308-7485,2021-06-11
+PROV400033,Carolyn,Welch,Endocrinology,6086370835,Mitchellfurt Health Group,New Julieberg,Michigan,577-775-3881x768,2020-03-03
+PROV400034,David,Ruiz,OB/GYN,9915124505,Port Meganville Hospital,Port Samanthaville,Nevada,(519)389-7446,2022-02-13
+PROV400035,Anita,Davis,Pediatrics,8599339588,Ericaland Health Group,Robertsville,Virginia,+1-407-504-4519x649,2024-12-07
+PROV400036,Angel,Neal,Pediatrics,5612782269,Browntown Medical Center,South Denisehaven,Maine,(252)846-7193,2024-08-20
+PROV400037,Robin,Curtis,Psychiatry,6963950489,Malloryfort Medical Center,Lake Betty,Wyoming,775.335.8983x24359,2020-07-24
+PROV400038,James,Jones,Pediatrics,2136726892,Newtonstad Hospital,Jamesbury,Idaho,569-935-5169x788,2025-06-19
+PROV400039,Madison,Olson,Internal Medicine,4988247780,Port Brian Hospital,New Wendy,Delaware,788.542.7169x65645,2025-04-10
+PROV400040,Carol,Carney,Cardiology,8067296442,Andrewborough Medical Center,Tonyfurt,Maryland,001-554-440-6689x9425,2022-12-09
+PROV400041,Jacob,Perkins,Cardiology,2852220019,Port Connieside Medical Center,North Coreyside,New York,(213)798-3020,2022-03-13
+PROV400042,Courtney,Peterson,OB/GYN,8367588279,Lake James Medical Center,Estradachester,Washington,6182619136,2024-06-05
+PROV400043,Robert,Cook,Family Medicine,1313186891,Port Tammyland Health Group,Brandonfort,New York,950.631.8849,2019-02-06
+PROV400044,Paul,White,OB/GYN,3137611159,Michaelbury Medical Center,South Rickey,Texas,3233521792,2023-04-22
+PROV400045,Grant,Nichols,Family Medicine,8149427618,East Anthonymouth Health Group,North Ericland,South Carolina,7588147960,2019-10-02
+PROV400046,John,Orr,Cardiology,8301681475,New Jonathanshire Hospital,Powellhaven,North Dakota,943-546-4582x95463,2020-09-01
+PROV400047,Jeffrey,Smith,Endocrinology,9605842084,Lake Adam Hospital,Garciafurt,Georgia,342.653.0128,2018-08-29
+PROV400048,Karen,Rodriguez,OB/GYN,7167820709,New Maurice Medical Center,South Elizabethhaven,Connecticut,+1-574-914-6566,2018-12-08
+PROV400049,Tristan,Welch,Neurology,1970004816,Lake Donna Hospital,Port Sara,Virginia,(414)635-3554x622,2022-06-15
+PROV400050,Kathryn,Sullivan,OB/GYN,9553862785,North Cherylport Health Group,New Stephanieland,Tennessee,(361)693-5815,2019-05-19
+PROV400051,Amy,Oneill,Pediatrics,2720627470,Brianport Medical Center,Rogerstown,Oklahoma,769-754-4956x977,2022-03-15
+PROV400052,Robin,Hines,Dermatology,9422110981,East Kelly Medical Center,North Karimouth,Florida,(890)440-1507,2023-08-10
+PROV400053,Jennifer,Nelson,OB/GYN,1872395778,North Dylanville Medical Center,Taylorburgh,Arizona,001-643-342-2082,2024-04-13
+PROV400054,Carol,Valdez,Psychiatry,3837831301,Bryanthaven Health Group,Clarkville,Texas,001-837-323-0735x713,2022-10-26
+PROV400055,Sean,King,Psychiatry,4850269395,Palmershire Health Group,Jasonstad,Hawaii,585-835-5995x15414,2019-01-06
+PROV400056,Keith,Kelley,OB/GYN,8012785094,West Joe Clinic,Angelafurt,Washington,8645144250,2020-09-01
+PROV400057,Kimberly,Rivera,Cardiology,1153323006,Berryton Medical Center,West Stephanietown,North Dakota,+1-606-739-5845,2018-08-12
+PROV400058,Courtney,Prince,Endocrinology,6319253135,New Paul Hospital,South Brandon,Kentucky,368.509.8568x3505,2020-11-27
+PROV400059,Kyle,Johnson,Internal Medicine,8058382074,Coxview Hospital,Rhodesville,Louisiana,(895)503-3693,2021-02-06
+PROV400060,Austin,Walter,Neurology,8781527616,North Josephport Medical Center,Lake Courtneyport,Missouri,8658349309,2022-04-10
+PROV400061,Rhonda,Gonzalez,Family Medicine,2457218442,South Nicholaston Health Group,Juliafort,New Hampshire,490.545.5436,2020-03-13
+PROV400062,Christopher,Archer,Family Medicine,2741642976,North Helen Clinic,Lake Brandonville,Delaware,+1-303-887-7380x07789,2023-04-02
+PROV400063,Kimberly,Chavez,Neurology,3488270884,Lake Sarafurt Medical Center,Hickshaven,Maryland,531.365.0983,2024-03-15
+PROV400064,Hector,Taylor,Family Medicine,4158775469,Catherineton Hospital,Port Robertaton,Mississippi,639-534-6989x8473,2023-08-06
+PROV400065,Leslie,Lewis,Family Medicine,1196716790,Thompsonstad Clinic,North Lorimouth,Wyoming,558.449.6200,2020-06-19
+PROV400066,Austin,Smith,Family Medicine,4408903107,South Diana Hospital,Brownville,New York,385.355.5505,2024-07-18
+PROV400067,Sarah,Owens,Endocrinology,3538508163,Wallsland Medical Center,Erikchester,Florida,243-467-7041x1080,2024-01-14
+PROV400068,Michelle,English,Internal Medicine,1947351792,East Sarashire Clinic,Greenhaven,Pennsylvania,(364)225-2753x177,2021-08-22
+PROV400069,Kimberly,Ramos,Psychiatry,7021581129,Robertfurt Medical Center,East Tyler,Kentucky,248.289.1900,2019-12-28
+PROV400070,John,Johnson,Endocrinology,3344557360,Port Davidmouth Health Group,Connerfurt,Montana,(359)357-8744,2019-08-28
+PROV400071,Jessica,Collins,Orthopedics,4282333775,Gregfort Clinic,Port Tom,Wyoming,+1-921-394-0478x9136,2022-04-09
+PROV400072,Chad,Butler,Dermatology,1271535964,Katherinehaven Health Group,Lake Ericbury,Vermont,527.294.1455x09733,2023-09-09
+PROV400073,Sandra,Woods,Cardiology,8548620154,Port Samantha Clinic,Lake Joshua,Hawaii,001-585-627-0497,2021-02-28
+PROV400074,Renee,Raymond,Dermatology,3376868109,Kochport Hospital,Greenview,Oregon,(359)713-1101x52218,2024-12-25
+PROV400075,Brenda,Pace,Orthopedics,1174800445,East Jamesside Medical Center,Cruzhaven,Texas,+1-723-423-5113,2020-01-10
+PROV400076,Marcus,Baker,Endocrinology,1677546830,Michaeltown Hospital,North Terry,Ohio,+1-610-313-2470x73081,2020-11-30
+PROV400077,Henry,Walker,Internal Medicine,1027271239,Samuelview Clinic,Erinstad,Tennessee,973-830-1654,2021-09-11
+PROV400078,Shane,Davis,Internal Medicine,6513585010,Jillland Hospital,Myersstad,Michigan,+1-917-328-6421x3601,2021-02-21
+PROV400079,Shawna,Pruitt,Cardiology,1885451419,East Lisa Health Group,New Sydney,Vermont,253-719-6516x4418,2020-11-01
+PROV400080,Melissa,Johnson,Neurology,7229502736,Jessicahaven Clinic,Lake Elizabethview,Wyoming,(907)896-1990,2021-05-10
+PROV400081,Joanna,Dominguez,Cardiology,9751516468,North Daniel Clinic,Johnsonhaven,New Jersey,215.874.9167x16567,2022-03-21
+PROV400082,Travis,Greer,OB/GYN,9967982724,Davidchester Health Group,North James,Oklahoma,(728)257-9401x541,2021-12-13
+PROV400083,Willie,Richards,Dermatology,2798671637,Christopherside Clinic,North Oscarfort,Ohio,734.980.8514x9667,2024-02-28
+PROV400084,Craig,Crane,Orthopedics,6236751117,Kellyberg Clinic,North Vanessa,Illinois,001-742-968-3969x95713,2018-09-29
+PROV400085,Brandon,Henderson,Pediatrics,1227929714,Michaelberg Medical Center,Lake Joseph,South Dakota,5233878930,2021-01-26
+PROV400086,Jessica,Long,Cardiology,7332554920,West Aaronfurt Clinic,Lake Robin,Georgia,001-422-359-5376,2018-08-09
+PROV400087,Jennifer,Pierce,Cardiology,1185180108,Jamesmouth Health Group,South Laurie,Arizona,(767)554-9059x73037,2022-07-30
+PROV400088,Kimberly,Brooks,Pediatrics,6195148443,New Katrinahaven Health Group,North Jennifer,Oklahoma,(894)981-7049,2019-10-28
+PROV400089,Brandy,Taylor,Dermatology,2946254259,New Sharonchester Medical Center,South Heather,North Dakota,001-900-947-2028x88239,2018-07-31
+PROV400090,Katie,Pugh,Family Medicine,1755431522,Alvarezland Medical Center,Elizabethport,Utah,(544)431-0299,2019-05-13
+PROV400091,Andrew,Lewis,OB/GYN,3211494631,Ruizview Medical Center,North Briannamouth,Wyoming,+1-642-570-9831x81803,2018-10-22
+PROV400092,Robin,Garcia,Orthopedics,8393369940,North Sarah Health Group,Michaelside,Florida,659.886.8581x9748,2024-02-18
+PROV400093,Scott,Payne,Psychiatry,2398806247,East James Medical Center,Wallerview,Hawaii,604-264-7174x26588,2022-01-08
+PROV400094,Ryan,Miller,Dermatology,1978316519,West Michael Clinic,North Ryanton,Connecticut,(841)481-1607,2024-11-07
+PROV400095,Craig,Silva,Psychiatry,4736133245,Bishopburgh Hospital,Grossland,Missouri,+1-347-620-2063,2019-02-18
+PROV400096,Linda,Hardin,Orthopedics,5610775014,West Jonathan Hospital,New Michael,Maryland,3569864296,2020-01-11
+PROV400097,Katie,Moody,Family Medicine,9119587751,Solomonberg Clinic,Leonardland,North Dakota,+1-497-206-0446,2020-05-07
+PROV400098,Scott,Velazquez,Orthopedics,2954170921,Thomasshire Hospital,Lake Samuelfort,Illinois,821-842-1140x7813,2025-07-17
+PROV400099,Larry,Anderson,Dermatology,5880820657,South Brianhaven Clinic,Port Anne,Idaho,413.442.4706x492,2021-03-26

@@ -1,0 +1,10 @@
+{
+    "name": "ls_AdeaKeyVault",
+    "properties": {
+        "annotations": [],
+        "type": "AzureKeyVault",
+        "typeProperties": {
+            "baseUrl": "https://<key-vault-name>.vault.azure.net/"
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "name": "pl_notify_failure",
+    "properties": {
+        "description": "Reusable failure notification: posts to a webhook (Teams/Slack incoming webhook). p_webhook_url is intentionally a parameter, not hardcoded — set it via a pipeline default value override or a trigger parameter at deployment time; consider sourcing it from ls_AdeaKeyVault instead once Phase 7 wires up Key Vault-backed pipeline parameters.",
+        "activities": [
+            {
+                "name": "Send_Failure_Notification",
+                "type": "WebActivity",
+                "policy": {
+                    "timeout": "0.00:05:00",
+                    "retry": 2,
+                    "retryIntervalInSeconds": 15
+                },
+                "typeProperties": {
+                    "url": "@pipeline().parameters.p_webhook_url",
+                    "method": "POST",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "body": {
+                        "value": "@concat('{\"text\": \"ADEA pipeline failed: ', pipeline().parameters.p_pipeline_name, ' — ', pipeline().parameters.p_error_message, '\"}')",
+                        "type": "Expression"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "p_pipeline_name": { "type": "string" },
+            "p_error_message": { "type": "string" },
+            "p_webhook_url": { "type": "string", "defaultValue": "<set-teams-or-slack-webhook-url>" }
+        },
+        "annotations": []
+    }
+}

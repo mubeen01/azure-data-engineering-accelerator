@@ -1,0 +1,21 @@
+{
+    "name": "ds_generic_sql_table",
+    "properties": {
+        "description": "Parameterized so one dataset serves every staging table sink, driven by etl.ctrl_pipeline_metadata.",
+        "linkedServiceName": {
+            "referenceName": "ls_AdeaDW_AzureSqlDatabase",
+            "type": "LinkedServiceReference"
+        },
+        "parameters": {
+            "schemaName": { "type": "string" },
+            "tableName": { "type": "string" }
+        },
+        "annotations": [],
+        "type": "AzureSqlTable",
+        "schema": [],
+        "typeProperties": {
+            "schema": "@dataset().schemaName",
+            "table": "@dataset().tableName"
+        }
+    }
+}

@@ -1,0 +1,123 @@
+{
+    "name": "pl_master_orchestrator",
+    "properties": {
+        "description": "Metadata-driven entry point: reads every active row from etl.ctrl_pipeline_metadata and, for each one, runs the full or incremental generic load pipeline. Adding a new source object means inserting a row in that table — not building a new pipeline. isSequential is true by default for safe load ordering (e.g. dimensions before facts); set to false with a batchCount once independent objects don't need to run in order.",
+        "activities": [
+            {
+                "name": "Get_Active_Pipeline_Metadata",
+                "type": "Lookup",
+                "policy": {
+                    "timeout": "0.01:00:00",
+                    "retry": 1,
+                    "retryIntervalInSeconds": 30
+                },
+                "typeProperties": {
+                    "source": {
+                        "type": "AzureSqlSource",
+                        "sqlReaderQuery": "SELECT * FROM etl.ctrl_pipeline_metadata WHERE is_active = 1 ORDER BY load_priority ASC, object_name ASC"
+                    },
+                    "dataset": {
+                        "referenceName": "ds_ctrl_pipeline_metadata",
+                        "type": "DatasetReference"
+                    },
+                    "firstRowOnly": false
+                }
+            },
+            {
+                "name": "For_Each_Source_Object",
+                "type": "ForEach",
+                "dependsOn": [
+                    { "activity": "Get_Active_Pipeline_Metadata", "dependencyConditions": ["Succeeded"] }
+                ],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('Get_Active_Pipeline_Metadata').output.value",
+                        "type": "Expression"
+                    },
+                    "isSequential": true,
+                    "activities": [
+                        {
+                            "name": "Is_Incremental_Load",
+                            "type": "IfCondition",
+                            "typeProperties": {
+                                "expression": {
+                                    "value": "@equals(item().load_type, 'INCREMENTAL')",
+                                    "type": "Expression"
+                                },
+                                "ifTrueActivities": [
+                                    {
+                                        "name": "Execute_Incremental_Load",
+                                        "type": "ExecutePipeline",
+                                        "policy": { "retry": 1, "retryIntervalInSeconds": 60 },
+                                        "typeProperties": {
+                                            "pipeline": {
+                                                "referenceName": "pl_load_generic_incremental",
+                                                "type": "PipelineReference"
+                                            },
+                                            "waitOnCompletion": true,
+                                            "parameters": {
+                                                "p_source_container": "@item().source_container",
+                                                "p_source_folder": "@item().source_folder_path",
+                                                "p_source_file": "@item().source_file_name",
+                                                "p_sink_schema": "@item().sink_schema",
+                                                "p_sink_table": "@item().sink_table",
+                                                "p_load_procedure_name": "@item().load_procedure_name",
+                                                "p_source_system": "@item().source_system",
+                                                "p_object_name": "@item().object_name"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "ifFalseActivities": [
+                                    {
+                                        "name": "Execute_Full_Load",
+                                        "type": "ExecutePipeline",
+                                        "policy": { "retry": 1, "retryIntervalInSeconds": 60 },
+                                        "typeProperties": {
+                                            "pipeline": {
+                                                "referenceName": "pl_load_generic_full",
+                                                "type": "PipelineReference"
+                                            },
+                                            "waitOnCompletion": true,
+                                            "parameters": {
+                                                "p_source_container": "@item().source_container",
+                                                "p_source_folder": "@item().source_folder_path",
+                                                "p_source_file": "@item().source_file_name",
+                                                "p_sink_schema": "@item().sink_schema",
+                                                "p_sink_table": "@item().sink_table",
+                                                "p_load_procedure_name": "@item().load_procedure_name"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Notify_On_Failure",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    { "activity": "For_Each_Source_Object", "dependencyConditions": ["Failed"] }
+                ],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "pl_notify_failure",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "p_pipeline_name": "pl_master_orchestrator",
+                        "p_error_message": "@activity('For_Each_Source_Object').Error.message",
+                        "p_webhook_url": "@pipeline().parameters.p_webhook_url"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "p_webhook_url": { "type": "string", "defaultValue": "<set-teams-or-slack-webhook-url>" }
+        },
+        "annotations": []
+    }
+}

@@ -1,0 +1,161 @@
+product_id,product_name,category,subcategory,brand,unit_cost,unit_price,created_date
+PROD700000,Harbor Supply Any,Home & Kitchen,Furniture,Aurora Home,394.32,654.81,2023-12-05
+PROD700001,Summit Goods Policy,Electronics,Computers,Aurora Home,224.02,440.65,2025-06-24
+PROD700002,Aurora Home In,Electronics,Mobile Accessories,Aurora Home,389.0,696.28,2023-06-03
+PROD700003,Harbor Supply Born,Toys & Games,Outdoor Play,Bluepoint,152.45,353.56,2022-10-17
+PROD700004,Vertex Whom,Toys & Games,Outdoor Play,Northline,343.44,678.25,2024-02-27
+PROD700005,Vertex Sound,Grocery,Fresh,Bluepoint,224.24,360.13,2023-03-24
+PROD700006,Crestwood Land,Beauty,Makeup,Cedar & Co,259.74,504.61,2026-02-16
+PROD700007,Aurora Home Opportunity,Sporting Goods,Fitness,Cedar & Co,23.46,35.8,2023-10-21
+PROD700008,Fieldstone Father,Sporting Goods,Team Sports,Northline,193.32,300.45,2026-05-14
+PROD700009,Cedar & Co Attorney,Sporting Goods,Cycling,Bluepoint,384.94,821.75,2024-11-20
+PROD700010,Bluepoint Management,Sporting Goods,Team Sports,Marlowe,160.46,281.9,2025-12-06
+PROD700011,Fieldstone Step,Beauty,Fragrance,Crestwood,125.44,177.92,2024-07-19
+PROD700012,Fieldstone Store,Books,Non-Fiction,Fieldstone,305.37,511.65,2024-05-23
+PROD700013,Bluepoint These,Electronics,Computers,Northline,226.32,365.04,2025-06-02
+PROD700014,Bluepoint Will,Grocery,Pantry,Bluepoint,120.19,211.03,2024-11-07
+PROD700015,Fieldstone Popular,Sporting Goods,Team Sports,Crestwood,201.22,494.96,2024-04-27
+PROD700016,Fieldstone Begin,Books,Non-Fiction,Vertex,185.95,402.47,2025-06-28
+PROD700017,Harbor Supply Manager,Books,Fiction,Harbor Supply,76.07,101.98,2024-05-17
+PROD700018,Northline Property,Apparel,Men's,Aurora Home,378.24,554.12,2024-10-28
+PROD700019,Vertex Left,Sporting Goods,Fitness,Bluepoint,29.98,57.17,2025-07-17
+PROD700020,Summit Goods Culture,Beauty,Fragrance,Crestwood,27.0,35.61,2024-12-13
+PROD700021,Harbor Supply Key,Grocery,Pantry,Harbor Supply,7.7,19.04,2023-02-02
+PROD700022,Aurora Home Shake,Electronics,Computers,Cedar & Co,202.38,486.05,2026-04-02
+PROD700023,Summit Goods Again,Home & Kitchen,Decor,Fieldstone,98.66,159.91,2023-11-03
+PROD700024,Aurora Home Conference,Grocery,Fresh,Summit Goods,34.37,54.71,2025-10-28
+PROD700025,Cedar & Co Peace,Sporting Goods,Fitness,Cedar & Co,122.09,218.09,2024-08-25
+PROD700026,Northline Hit,Grocery,Snacks,Vertex,222.42,311.22,2025-12-06
+PROD700027,Fieldstone Security,Grocery,Snacks,Harbor Supply,259.03,622.44,2024-11-17
+PROD700028,Summit Goods Production,Sporting Goods,Cycling,Marlowe,86.93,117.87,2022-12-06
+PROD700029,Marlowe Article,Apparel,Men's,Vertex,274.72,663.32,2022-12-15
+PROD700030,Bluepoint Risk,Beauty,Haircare,Aurora Home,9.22,22.26,2026-05-06
+PROD700031,Bluepoint For,Toys & Games,Outdoor Play,Harbor Supply,67.49,114.6,2022-10-29
+PROD700032,Cedar & Co Anyone,Home & Kitchen,Decor,Northline,316.83,449.02,2025-08-18
+PROD700033,Fieldstone Air,Sporting Goods,Cycling,Fieldstone,335.95,448.68,2024-10-18
+PROD700034,Crestwood Short,Toys & Games,Outdoor Play,Bluepoint,314.07,542.39,2023-03-13
+PROD700035,Summit Goods Guy,Grocery,Fresh,Cedar & Co,174.44,388.41,2025-01-28
+PROD700036,Cedar & Co Prove,Toys & Games,Action Figures,Marlowe,319.83,474.97,2023-04-27
+PROD700037,Fieldstone Development,Home & Kitchen,Decor,Cedar & Co,296.64,418.21,2022-10-04
+PROD700038,Marlowe Impact,Toys & Games,Action Figures,Vertex,179.56,252.24,2024-01-09
+PROD700039,Harbor Supply Bill,Grocery,Fresh,Cedar & Co,181.19,241.26,2023-01-18
+PROD700040,Summit Goods Measure,Beauty,Makeup,Aurora Home,223.03,293.24,2024-04-25
+PROD700041,Cedar & Co Onto,Grocery,Beverages,Summit Goods,156.96,302.2,2023-03-30
+PROD700042,Marlowe Through,Grocery,Pantry,Marlowe,70.29,132.97,2026-02-15
+PROD700043,Marlowe Garden,Apparel,Footwear,Marlowe,69.38,130.51,2026-05-15
+PROD700044,Bluepoint By,Apparel,Footwear,Summit Goods,146.37,298.6,2023-12-02
+PROD700045,Marlowe Very,Books,Fiction,Aurora Home,45.47,77.24,2023-03-16
+PROD700046,Fieldstone Wait,Grocery,Fresh,Fieldstone,322.22,585.39,2025-12-07
+PROD700047,Summit Goods Theory,Home & Kitchen,Furniture,Crestwood,122.27,205.05,2024-09-14
+PROD700048,Marlowe My,Grocery,Fresh,Summit Goods,387.58,867.55,2022-09-01
+PROD700049,Aurora Home And,Beauty,Makeup,Cedar & Co,152.29,368.31,2023-11-16
+PROD700050,Harbor Supply Politics,Sporting Goods,Outdoor,Harbor Supply,238.11,317.23,2026-06-04
+PROD700051,Bluepoint Keep,Books,Reference,Marlowe,377.36,867.0,2022-08-30
+PROD700052,Aurora Home Than,Apparel,Footwear,Vertex,328.13,675.95,2024-02-09
+PROD700053,Vertex Eye,Sporting Goods,Cycling,Aurora Home,103.31,143.47,2024-05-03
+PROD700054,Harbor Supply Organization,Books,Reference,Harbor Supply,234.15,314.73,2022-08-29
+PROD700055,Harbor Supply Hour,Beauty,Skincare,Cedar & Co,281.55,625.81,2026-02-21
+PROD700056,Summit Goods Animal,Beauty,Skincare,Summit Goods,69.04,171.24,2024-09-16
+PROD700057,Fieldstone First,Grocery,Fresh,Cedar & Co,386.82,507.76,2025-04-17
+PROD700058,Harbor Supply Quickly,Toys & Games,Board Games,Crestwood,91.13,159.38,2025-01-19
+PROD700059,Summit Goods Sit,Books,Non-Fiction,Fieldstone,309.62,773.2,2023-12-24
+PROD700060,Aurora Home Really,Books,Fiction,Cedar & Co,44.51,102.27,2022-12-05
+PROD700061,Fieldstone May,Home & Kitchen,Appliances,Bluepoint,141.29,272.03,2025-09-27
+PROD700062,Crestwood Whom,Beauty,Fragrance,Fieldstone,192.04,265.13,2022-08-14
+PROD700063,Cedar & Co Who,Electronics,Audio,Fieldstone,324.64,674.46,2023-08-29
+PROD700064,Bluepoint Car,Home & Kitchen,Furniture,Harbor Supply,372.18,555.35,2025-12-28
+PROD700065,Bluepoint Appear,Grocery,Fresh,Vertex,383.51,584.34,2025-10-15
+PROD700066,Summit Goods Fear,Grocery,Beverages,Crestwood,160.05,321.8,2024-08-05
+PROD700067,Bluepoint Develop,Grocery,Beverages,Marlowe,4.77,10.51,2026-02-16
+PROD700068,Harbor Supply Age,Apparel,Women's,Fieldstone,232.21,392.71,2026-05-05
+PROD700069,Crestwood Need,Books,Children's,Summit Goods,48.24,85.21,2026-01-30
+PROD700070,Fieldstone Less,Grocery,Pantry,Crestwood,236.04,481.72,2024-12-07
+PROD700071,Summit Goods Of,Toys & Games,Action Figures,Vertex,367.72,616.23,2026-01-19
+PROD700072,Vertex Let,Sporting Goods,Team Sports,Vertex,124.24,237.67,2023-12-19
+PROD700073,Summit Goods Without,Grocery,Fresh,Aurora Home,239.78,365.16,2023-02-05
+PROD700074,Crestwood Imagine,Home & Kitchen,Decor,Vertex,223.3,340.42,2023-07-06
+PROD700075,Fieldstone College,Books,Fiction,Crestwood,248.91,364.36,2023-04-05
+PROD700076,Harbor Supply Try,Grocery,Fresh,Aurora Home,385.64,818.19,2025-09-27
+PROD700077,Crestwood Nearly,Grocery,Fresh,Vertex,284.93,398.68,2026-04-08
+PROD700078,Bluepoint Environmental,Electronics,Mobile Accessories,Northline,318.96,519.85,2023-10-25
+PROD700079,Crestwood Business,Toys & Games,Outdoor Play,Harbor Supply,69.78,133.49,2023-07-19
+PROD700080,Harbor Supply During,Apparel,Kids',Harbor Supply,109.35,250.1,2025-06-11
+PROD700081,Crestwood Dark,Electronics,Computers,Aurora Home,304.72,433.59,2023-12-04
+PROD700082,Northline Old,Sporting Goods,Cycling,Marlowe,121.19,208.24,2025-05-01
+PROD700083,Cedar & Co Arm,Apparel,Women's,Bluepoint,177.31,403.0,2026-03-22
+PROD700084,Summit Goods Continue,Beauty,Fragrance,Vertex,344.84,703.26,2025-06-18
+PROD700085,Northline Win,Sporting Goods,Team Sports,Harbor Supply,325.97,533.71,2022-11-14
+PROD700086,Marlowe As,Home & Kitchen,Decor,Summit Goods,131.49,213.12,2023-06-23
+PROD700087,Aurora Home Media,Apparel,Men's,Marlowe,56.83,133.01,2025-09-27
+PROD700088,Vertex Me,Home & Kitchen,Furniture,Vertex,281.47,606.19,2022-08-15
+PROD700089,Aurora Home Ahead,Sporting Goods,Cycling,Vertex,305.31,608.46,2023-02-28
+PROD700090,Aurora Home Edge,Toys & Games,Outdoor Play,Cedar & Co,252.24,519.7,2026-01-25
+PROD700091,Marlowe Difficult,Apparel,Kids',Crestwood,162.93,397.6,2023-11-28
+PROD700092,Cedar & Co Occur,Beauty,Fragrance,Fieldstone,234.04,543.0,2023-02-24
+PROD700093,Aurora Home Decide,Grocery,Beverages,Crestwood,89.48,145.16,2023-12-18
+PROD700094,Summit Goods Summer,Toys & Games,Board Games,Summit Goods,137.09,318.45,2026-03-17
+PROD700095,Northline Trade,Beauty,Skincare,Cedar & Co,357.98,734.37,2022-08-28
+PROD700096,Vertex Leave,Books,Reference,Crestwood,9.46,12.31,2023-04-19
+PROD700097,Vertex Management,Grocery,Pantry,Vertex,83.32,195.74,2023-11-16
+PROD700098,Fieldstone Relationship,Toys & Games,Educational,Cedar & Co,40.06,69.95,2022-11-28
+PROD700099,Marlowe Site,Home & Kitchen,Furniture,Aurora Home,23.56,49.16,2026-01-03
+PROD700100,Crestwood There,Apparel,Men's,Vertex,3.43,6.9,2025-11-21
+PROD700101,Fieldstone Hope,Books,Fiction,Aurora Home,6.69,14.27,2024-07-27
+PROD700102,Aurora Home Watch,Books,Fiction,Cedar & Co,31.12,44.31,2022-10-13
+PROD700103,Vertex Wall,Beauty,Fragrance,Vertex,352.75,730.15,2024-09-19
+PROD700104,Summit Goods Wrong,Home & Kitchen,Cookware,Summit Goods,30.16,62.73,2026-03-17
+PROD700105,Bluepoint Two,Books,Non-Fiction,Aurora Home,142.42,290.44,2026-01-11
+PROD700106,Cedar & Co Nice,Books,Fiction,Vertex,344.41,758.71,2023-06-01
+PROD700107,Aurora Home Computer,Grocery,Pantry,Vertex,142.56,227.72,2024-09-18
+PROD700108,Summit Goods Increase,Apparel,Kids',Northline,101.52,235.27,2026-03-08
+PROD700109,Summit Goods Also,Toys & Games,Board Games,Aurora Home,84.56,139.92,2023-09-05
+PROD700110,Bluepoint Big,Electronics,Cameras,Aurora Home,314.17,450.93,2024-03-05
+PROD700111,Cedar & Co Black,Books,Fiction,Fieldstone,256.32,620.48,2023-11-19
+PROD700112,Summit Goods Down,Home & Kitchen,Appliances,Fieldstone,156.57,306.19,2024-01-04
+PROD700113,Cedar & Co Those,Home & Kitchen,Cookware,Summit Goods,305.8,422.32,2023-09-30
+PROD700114,Northline Discussion,Toys & Games,Outdoor Play,Harbor Supply,88.65,145.72,2025-12-30
+PROD700115,Aurora Home Sell,Grocery,Snacks,Harbor Supply,171.16,332.94,2023-11-07
+PROD700116,Marlowe Pattern,Home & Kitchen,Cookware,Harbor Supply,113.15,272.14,2026-06-05
+PROD700117,Aurora Home Brother,Home & Kitchen,Cookware,Marlowe,215.95,461.79,2025-08-06
+PROD700118,Cedar & Co Soldier,Sporting Goods,Cycling,Cedar & Co,25.99,47.93,2025-04-24
+PROD700119,Vertex Season,Electronics,Audio,Northline,125.79,270.38,2024-09-11
+PROD700120,Fieldstone Page,Electronics,Mobile Accessories,Vertex,68.04,118.81,2023-03-14
+PROD700121,Cedar & Co Though,Toys & Games,Action Figures,Fieldstone,293.98,666.9,2023-11-12
+PROD700122,Marlowe Thank,Toys & Games,Action Figures,Crestwood,210.97,389.5,2024-01-11
+PROD700123,Summit Goods Red,Beauty,Haircare,Fieldstone,25.01,37.23,2023-11-24
+PROD700124,Cedar & Co Local,Apparel,Women's,Harbor Supply,358.02,466.53,2025-08-28
+PROD700125,Crestwood Few,Electronics,Mobile Accessories,Aurora Home,100.09,240.64,2025-04-29
+PROD700126,Northline Kitchen,Home & Kitchen,Appliances,Bluepoint,372.67,628.38,2025-03-21
+PROD700127,Fieldstone Find,Grocery,Pantry,Cedar & Co,366.59,727.99,2025-08-19
+PROD700128,Northline Early,Apparel,Women's,Bluepoint,202.31,458.27,2023-05-23
+PROD700129,Cedar & Co During,Electronics,Cameras,Marlowe,381.77,850.67,2022-10-18
+PROD700130,Harbor Supply Expert,Toys & Games,Outdoor Play,Northline,132.94,231.67,2026-01-11
+PROD700131,Marlowe Admit,Toys & Games,Board Games,Crestwood,226.83,395.12,2023-06-25
+PROD700132,Bluepoint Wear,Books,Non-Fiction,Vertex,399.12,521.91,2026-04-19
+PROD700133,Harbor Supply Another,Grocery,Pantry,Northline,12.49,30.49,2025-05-23
+PROD700134,Aurora Home Reduce,Electronics,Mobile Accessories,Cedar & Co,304.29,470.5,2026-02-20
+PROD700135,Northline Why,Sporting Goods,Outdoor,Marlowe,169.67,239.51,2025-07-17
+PROD700136,Harbor Supply Group,Sporting Goods,Cycling,Fieldstone,359.22,664.61,2024-11-19
+PROD700137,Harbor Supply Star,Apparel,Women's,Aurora Home,233.57,324.61,2022-11-26
+PROD700138,Vertex Month,Electronics,Computers,Marlowe,175.69,283.42,2023-01-22
+PROD700139,Aurora Home Here,Beauty,Makeup,Fieldstone,370.64,683.2,2025-05-17
+PROD700140,Bluepoint Must,Sporting Goods,Outdoor,Summit Goods,32.65,46.71,2024-01-17
+PROD700141,Crestwood Eat,Apparel,Kids',Aurora Home,68.26,98.63,2024-01-07
+PROD700142,Bluepoint About,Beauty,Fragrance,Marlowe,385.96,716.35,2026-03-11
+PROD700143,Marlowe Tv,Apparel,Men's,Bluepoint,38.9,89.59,2024-05-20
+PROD700144,Bluepoint Car,Beauty,Makeup,Aurora Home,61.88,118.57,2025-02-12
+PROD700145,Vertex Civil,Toys & Games,Action Figures,Aurora Home,106.29,247.18,2024-02-03
+PROD700146,Cedar & Co This,Sporting Goods,Outdoor,Cedar & Co,40.61,53.38,2024-10-31
+PROD700147,Aurora Home Record,Sporting Goods,Team Sports,Cedar & Co,54.89,109.71,2022-09-12
+PROD700148,Cedar & Co Similar,Toys & Games,Action Figures,Cedar & Co,367.22,564.53,2025-09-28
+PROD700149,Cedar & Co Pick,Books,Children's,Cedar & Co,324.29,438.19,2025-12-22
+PROD700150,Summit Goods Picture,Books,Reference,Aurora Home,23.1,43.78,2023-09-24
+PROD700151,Vertex Population,Grocery,Pantry,Bluepoint,274.24,655.42,2022-10-28
+PROD700152,Vertex Over,Toys & Games,Action Figures,Summit Goods,114.1,233.11,2025-05-05
+PROD700153,Crestwood Together,Sporting Goods,Cycling,Harbor Supply,259.97,487.4,2025-10-25
+PROD700154,Vertex Enter,Apparel,Footwear,Bluepoint,114.07,236.26,2025-11-05
+PROD700155,Harbor Supply Education,Sporting Goods,Fitness,Aurora Home,253.41,567.21,2024-06-10
+PROD700156,Crestwood Worry,Beauty,Makeup,Summit Goods,193.43,368.07,2023-05-23
+PROD700157,Northline Economy,Grocery,Pantry,Summit Goods,110.36,172.47,2023-06-20
+PROD700158,Crestwood Audience,Toys & Games,Educational,Summit Goods,26.26,65.64,2023-04-22
+PROD700159,Bluepoint Teach,Home & Kitchen,Decor,Harbor Supply,42.75,97.45,2026-02-08

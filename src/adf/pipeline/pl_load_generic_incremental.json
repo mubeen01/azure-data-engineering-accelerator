@@ -1,0 +1,178 @@
+{
+    "name": "pl_load_generic_incremental",
+    "properties": {
+        "description": "Generic incremental load for file-based sources: a flat file has no row-level change-tracking column to filter on, so 'incremental' here means file-level — only process the source file if its lastModified is newer than the stored watermark. Once a real transactional source is wired in (Phase 8), the Copy activity's source query can filter by watermark_column instead and this pipeline's shape stays the same.",
+        "activities": [
+            {
+                "name": "Get_Last_Watermark",
+                "type": "Lookup",
+                "policy": {
+                    "timeout": "0.01:00:00",
+                    "retry": 1,
+                    "retryIntervalInSeconds": 30
+                },
+                "typeProperties": {
+                    "source": {
+                        "type": "AzureSqlSource",
+                        "sqlReaderQuery": "@concat('SELECT [etl].[ufn_get_watermark](''', pipeline().parameters.p_source_system, ''', ''', pipeline().parameters.p_object_name, ''') AS last_watermark')"
+                    },
+                    "dataset": {
+                        "referenceName": "ds_ctrl_pipeline_metadata",
+                        "type": "DatasetReference"
+                    },
+                    "firstRowOnly": true
+                }
+            },
+            {
+                "name": "Get_Source_File_Metadata",
+                "type": "GetMetadata",
+                "policy": {
+                    "timeout": "0.01:00:00",
+                    "retry": 1,
+                    "retryIntervalInSeconds": 30
+                },
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "ds_generic_delimited_file",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "container": "@pipeline().parameters.p_source_container",
+                            "folderPath": "@pipeline().parameters.p_source_folder",
+                            "fileName": "@pipeline().parameters.p_source_file"
+                        }
+                    },
+                    "fieldList": ["lastModified"],
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings"
+                    }
+                }
+            },
+            {
+                "name": "Is_File_New",
+                "type": "IfCondition",
+                "dependsOn": [
+                    { "activity": "Get_Last_Watermark", "dependencyConditions": ["Succeeded"] },
+                    { "activity": "Get_Source_File_Metadata", "dependencyConditions": ["Succeeded"] }
+                ],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@greater(activity('Get_Source_File_Metadata').output.lastModified, activity('Get_Last_Watermark').output.firstRow.last_watermark)",
+                        "type": "Expression"
+                    },
+                    "ifTrueActivities": [
+                        {
+                            "name": "Copy_Source_To_Staging",
+                            "type": "Copy",
+                            "policy": {
+                                "timeout": "0.12:00:00",
+                                "retry": 2,
+                                "retryIntervalInSeconds": 30
+                            },
+                            "typeProperties": {
+                                "source": {
+                                    "type": "DelimitedTextSource",
+                                    "storeSettings": {
+                                        "type": "AzureBlobFSReadSettings",
+                                        "recursive": false
+                                    },
+                                    "formatSettings": {
+                                        "type": "DelimitedTextReadSettings"
+                                    }
+                                },
+                                "sink": {
+                                    "type": "AzureSqlSink",
+                                    "writeBehavior": "insert"
+                                },
+                                "enableStaging": false
+                            },
+                            "inputs": [
+                                {
+                                    "referenceName": "ds_generic_delimited_file",
+                                    "type": "DatasetReference",
+                                    "parameters": {
+                                        "container": "@pipeline().parameters.p_source_container",
+                                        "folderPath": "@pipeline().parameters.p_source_folder",
+                                        "fileName": "@pipeline().parameters.p_source_file"
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "referenceName": "ds_generic_sql_table",
+                                    "type": "DatasetReference",
+                                    "parameters": {
+                                        "schemaName": "@pipeline().parameters.p_sink_schema",
+                                        "tableName": "@pipeline().parameters.p_sink_table"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Run_Load_Procedure",
+                            "type": "SqlServerStoredProcedure",
+                            "dependsOn": [
+                                { "activity": "Copy_Source_To_Staging", "dependencyConditions": ["Succeeded"] }
+                            ],
+                            "policy": {
+                                "timeout": "0.06:00:00",
+                                "retry": 1,
+                                "retryIntervalInSeconds": 30
+                            },
+                            "linkedServiceName": {
+                                "referenceName": "ls_AdeaDW_AzureSqlDatabase",
+                                "type": "LinkedServiceReference"
+                            },
+                            "typeProperties": {
+                                "storedProcedureName": "@pipeline().parameters.p_load_procedure_name"
+                            }
+                        },
+                        {
+                            "name": "Update_Watermark",
+                            "type": "SqlServerStoredProcedure",
+                            "dependsOn": [
+                                { "activity": "Run_Load_Procedure", "dependencyConditions": ["Succeeded"] }
+                            ],
+                            "policy": {
+                                "timeout": "0.01:00:00",
+                                "retry": 1,
+                                "retryIntervalInSeconds": 30
+                            },
+                            "linkedServiceName": {
+                                "referenceName": "ls_AdeaDW_AzureSqlDatabase",
+                                "type": "LinkedServiceReference"
+                            },
+                            "typeProperties": {
+                                "storedProcedureName": "etl.usp_update_watermark",
+                                "storedProcedureParameters": {
+                                    "p_source_system": {
+                                        "value": "@pipeline().parameters.p_source_system",
+                                        "type": "String"
+                                    },
+                                    "p_object_name": {
+                                        "value": "@pipeline().parameters.p_object_name",
+                                        "type": "String"
+                                    },
+                                    "p_watermark_value": {
+                                        "value": "@activity('Get_Source_File_Metadata').output.lastModified",
+                                        "type": "DateTime"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "p_source_container": { "type": "string" },
+            "p_source_folder": { "type": "string" },
+            "p_source_file": { "type": "string" },
+            "p_sink_schema": { "type": "string" },
+            "p_sink_table": { "type": "string" },
+            "p_load_procedure_name": { "type": "string" },
+            "p_source_system": { "type": "string" },
+            "p_object_name": { "type": "string" }
+        },
+        "annotations": []
+    }
+}

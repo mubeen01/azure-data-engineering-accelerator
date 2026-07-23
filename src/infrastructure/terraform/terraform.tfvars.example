@@ -1,0 +1,9 @@
+# Copy to terraform.tfvars (already gitignored — never commit real secrets)
+# and fill in real values, or pass -var-file on the command line.
+
+environment_name = "dev"
+location         = "eastus2"
+sql_admin_login  = "adeaadmin"
+# sql_admin_password has no default — supply via TF_VAR_sql_admin_password
+# or -var, never checked into a tfvars file.
+enable_key_vault_purge_protection = false

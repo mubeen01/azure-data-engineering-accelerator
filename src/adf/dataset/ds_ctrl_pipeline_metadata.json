@@ -1,0 +1,17 @@
+{
+    "name": "ds_ctrl_pipeline_metadata",
+    "properties": {
+        "description": "Fixed (non-parameterized) dataset over etl.ctrl_pipeline_metadata — the orchestrator's Lookup activity reads the active object list from here.",
+        "linkedServiceName": {
+            "referenceName": "ls_AdeaDW_AzureSqlDatabase",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "AzureSqlTable",
+        "schema": [],
+        "typeProperties": {
+            "schema": "etl",
+            "table": "ctrl_pipeline_metadata"
+        }
+    }
+}

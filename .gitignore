@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Azure
+.azure/
+*.publishsettings
+
+# Databricks
+.databricks/
+*.dbc
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.secret
+*.key
+
+# Logs
+*.log
